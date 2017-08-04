@@ -13,7 +13,7 @@ QuerySyntax.propTypes = {
   ]).isRequired,
   title: string.isRequired,
   onGoBack: func,
-}
+};
 
 export default function QuerySyntax({ query, response, title, onGoBack }) {
   return (

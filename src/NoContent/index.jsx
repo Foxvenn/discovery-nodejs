@@ -2,12 +2,13 @@ import React from 'react';
 import { string, bool, shape } from 'prop-types';
 import { Icon } from 'watson-react-components';
 
+// eslint-disable-next-line no-use-before-define
 NoContent.propTypes = {
   query: shape({
-    restrictedDateRange: bool
+    restrictedDateRange: bool,
   }).isRequired,
-  message: string.isRequired
-}
+  message: string.isRequired,
+};
 
 export default function NoContent({ message, query }) {
   return (
@@ -15,19 +16,19 @@ export default function NoContent({ message, query }) {
       <div className="no-content--icon">
         <Icon type="info" />
       </div>
-      <div className='no-content--messages'>
-        <p className='no-content--set-message'>
+      <div className="no-content--messages">
+        <p className="no-content--set-message">
           { message }
         </p>
-        <p className='no-content--recommendations'>
+        <p className="no-content--recommendations">
           {
             query.restrictedDateRange
               ? (
-                  "Try expanding the timeframe."
-                )
+                'Try expanding the timeframe.'
+              )
               : (
-                  "Try modifying your query."
-                )
+                'Try modifying your query.'
+              )
           }
         </p>
       </div>

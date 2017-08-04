@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, shape, string, bool, func } from 'prop-types';
-import Collapsed from './Collapsed.jsx';
-import Expanded from './Expanded.jsx';
+import Collapsed from './Collapsed';
+import Expanded from './Expanded';
 
 Query.propTypes = {
   query: shape({
@@ -11,16 +11,16 @@ Query.propTypes = {
     dateRangeRestricted: bool,
   }),
   onQueryChange: func.isRequired,
-}
+};
 
 export default function Query({ query, onQueryChange }) {
   return (
     (query && query.text)
       ? (
-          <Collapsed query={query} onQueryChange={onQueryChange} />
-        )
+        <Collapsed query={query} onQueryChange={onQueryChange} />
+      )
       : (
-          <Expanded onQueryChange={onQueryChange} />
-        )
+        <Expanded onQueryChange={onQueryChange} />
+      )
   );
 }

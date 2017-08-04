@@ -3,24 +3,26 @@ import { string, bool, element, oneOfType, func } from 'prop-types';
 import classNames from 'classnames';
 import { Icon } from 'watson-react-components';
 
+// eslint-disable-next-line no-use-before-define
 Accordion.propTypes = {
-  show: bool,
   content: element.isRequired,
   header: oneOfType([
     element,
     string,
   ]).isRequired,
-  onClickToggle: func
-}
+  onClickToggle: func.isRequired,
+  show: bool,
+};
 
-export default function Accordion({ show = false, content, header, onClickToggle }) {
+export default function Accordion({ content, header, onClickToggle, show = false }) {
   return (
     <div className="accordion">
-      <div
+      <button
+        type="button"
         className={
           classNames('accordion--row', { close: !show })
         }
-        onClick={ onClickToggle ? onClickToggle : null }
+        onClick={onClickToggle || null}
       >
         <div className="accordion--icon-container">
           <Icon type="right" />
@@ -28,7 +30,7 @@ export default function Accordion({ show = false, content, header, onClickToggle
         <div className="accordion--header">
           { header }
         </div>
-      </div>
+      </button>
       <div className="accordion--content">
         <div className="accordion--inner-content">
           { content }

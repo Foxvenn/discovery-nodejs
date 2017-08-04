@@ -7,7 +7,7 @@ import queryBuilder from '../query-builder.js';  // eslint-disable-line
 
 export default class SetinmentAnalysis extends Component {
   state = {
-    showQuery: false
+    showQuery: false,
   }
 
   static propTypes = {
@@ -16,7 +16,7 @@ export default class SetinmentAnalysis extends Component {
     query: shape({
       text: string,
       date: object,
-    })
+    }),
   }
 
   onShowQuery = () => {
@@ -28,9 +28,7 @@ export default class SetinmentAnalysis extends Component {
   }
 
   filterEmptySentimentResults(sentiments) {
-    return sentiments.results.filter((result) =>  {
-      return result.aggregations[0].results.length > 0;
-    });
+    return sentiments.results.filter(result => result.aggregations[0].results.length > 0);
   }
 
   render() {
@@ -41,45 +39,46 @@ export default class SetinmentAnalysis extends Component {
         {
           !this.state.showQuery
             ? (
-                <div className="sentiment widget">
-                  <div className="widget--header">
-                    <h2 className="base--h2 widget--header-title">
+              <div className="sentiment widget">
+                <div className="widget--header">
+                  <h2 className="base--h2 widget--header-title">
                       Sentiment Analysis
-                    </h2>
-                    <div className="widget--header-spacer" />
-                    <button
-                      className="base--button widget--header-button"
-                      href="#" onClick={this.onShowQuery}
-                    >
+                  </h2>
+                  <div className="widget--header-spacer" />
+                  <button
+                    className="base--button widget--header-button"
+                    href="#"
+                    onClick={this.onShowQuery}
+                  >
                       View Query
-                    </button>
-                  </div>
-                  <p className="base--p sentiment--description">
-                    Extract sentiment from news articles across a variety of news sources (10 random sources used below).
-                  </p>
-                  <SentimentChart
-                    sentiment={sentiment}
-                    showLabels
-                    size="large"
-                  />
-                  <SentimentBySource
-                    sentiments={
-                      this.filterEmptySentimentResults(sentiments)
-                    }
-                  />
+                  </button>
                 </div>
-              )
-            : (
-                <QuerySyntax
-                  title="Sentiment Analysis"
-                  query={queryBuilder.build(query, true)}
-                  response={{
-                    sentiment: sentiment,
-                    sentiments: sentiments
-                  }}
-                  onGoBack={this.onShowResults}
+                <p className="base--p sentiment--description">
+                    Extract sentiment from news articles across a variety of news sources (10 random sources used below).
+                </p>
+                <SentimentChart
+                  sentiment={sentiment}
+                  showLabels
+                  size="large"
                 />
-              )
+                <SentimentBySource
+                  sentiments={
+                    this.filterEmptySentimentResults(sentiments)
+                  }
+                />
+              </div>
+            )
+            : (
+              <QuerySyntax
+                title="Sentiment Analysis"
+                query={queryBuilder.build(query, true)}
+                response={{
+                  sentiment,
+                  sentiments,
+                }}
+                onGoBack={this.onShowResults}
+              />
+            )
         }
       </div>
     );

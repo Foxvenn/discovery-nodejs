@@ -4,10 +4,10 @@ import { Icon } from 'watson-react-components';
 
 SortSelect.propTypes = {
   onChange: func.isRequired,
-  currSelected: string.isRequired
-}
+  currSelected: string.isRequired,
+};
 
-export default function SortSelect({ onChange, currSelected }){
+export default function SortSelect({ onChange, currSelected }) {
   return (
     <span>
       <select
@@ -26,9 +26,10 @@ export default function SortSelect({ onChange, currSelected }){
             transform: 'rotateZ(90deg)',
             width: '0.8rem',
             height: '0.8rem',
-            fill: '#5A5A5A'
+            fill: '#5A5A5A',
           }}
-          type="right" />
+          type="right"
+        />
       </span>
     </span>
   );

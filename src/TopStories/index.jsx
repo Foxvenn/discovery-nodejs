@@ -18,7 +18,7 @@ export default class TopStories extends Component {
 
   state = {
     showQuery: false,
-    sortType: (typeof this.props.query.sort === 'undefined' || this.props.query.sort === 'relevance') ? 'relevance' : 'date'
+    sortType: (typeof this.props.query.sort === 'undefined' || this.props.query.sort === 'relevance') ? 'relevance' : 'date',
   }
 
   onShowQuery = () => {
@@ -31,9 +31,9 @@ export default class TopStories extends Component {
 
   onChangeSort = (e) => {
     this.setState({ sortType: e.target.value });
-    let sortVal = e.target.value;
-    let newQuery = Object.assign({}, this.props.query, {
-      sort: sortVal
+    const sortVal = e.target.value;
+    const newQuery = Object.assign({}, this.props.query, {
+      sort: sortVal,
     });
     this.props.onSortChange(newQuery);
   }
@@ -46,50 +46,50 @@ export default class TopStories extends Component {
         {
           !this.state.showQuery
             ? (
-                <div className="top-stories widget">
-                  <div className="widget--header">
-                    <h2 className="base--h2 widget--header-title">
+              <div className="top-stories widget">
+                <div className="widget--header">
+                  <h2 className="base--h2 widget--header-title">
                       Top Stories
-                    </h2>
-                    <div className="widget--header-spacer" />
-                    <button
-                      className="base--button widget--header-button"
-                      href="#"
-                      onClick={this.onShowQuery}
-                    >
+                  </h2>
+                  <div className="widget--header-spacer" />
+                  <button
+                    className="base--button widget--header-button"
+                    href="#"
+                    onClick={this.onShowQuery}
+                  >
                       View Query
-                    </button>
-                  </div>
-                  <p className="base--p top-stories--description">
-                    Find the most recent and relevant news articles.
-                  </p>
-                  <div className="sort-option">
-                    <span id="sort-label">
-                      Sort by:
-                    </span>
-                    <span>
-                      <SortSelect
-                        onChange={this.onChangeSort}
-                        currSelected={this.state.sortType}
-                      />
-                    </span>
-                  </div>
-                  <div className="top-stories--list">
-                    {
-                      stories.map(item =>
-                        <Story
-                          key={item.id}
-                          title={(item[fields.title] || 'Untitled')}
-                          url={item[fields.url]}
-                          host={item[fields.host]}
-                          date={item[fields.publication_date]}
-                          score={item.score}
-                        />)
-                    }
-                  </div>
+                  </button>
                 </div>
-              )
-          : (
+                <p className="base--p top-stories--description">
+                    Find the most recent and relevant news articles.
+                </p>
+                <div className="sort-option">
+                  <span id="sort-label">
+                      Sort by:
+                  </span>
+                  <span>
+                    <SortSelect
+                      onChange={this.onChangeSort}
+                      currSelected={this.state.sortType}
+                    />
+                  </span>
+                </div>
+                <div className="top-stories--list">
+                  {
+                    stories.map(item =>
+                      (<Story
+                        key={item.id}
+                        title={(item[fields.title] || 'Untitled')}
+                        url={item[fields.url]}
+                        host={item[fields.host]}
+                        date={item[fields.publication_date]}
+                        score={item.score}
+                      />))
+                  }
+                </div>
+              </div>
+            )
+            : (
               <QuerySyntax
                 title="Top Stories"
                 query={queryBuilder.build(query, true)}
@@ -97,7 +97,7 @@ export default class TopStories extends Component {
                 onGoBack={this.onShowResults}
               />
             )
-      }
+        }
       </div>
     );
   }

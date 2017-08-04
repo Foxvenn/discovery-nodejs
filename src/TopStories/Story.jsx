@@ -7,15 +7,15 @@ Story.propTypes = {
   host: string,
   score: number.isRequired,
   title: string.isRequired,
-  url: string.isRequired
-}
+  url: string.isRequired,
+};
 
 export default function Story({ date, host = 'Placeholder Source', score, title, url }) {
   return (
     <div className="story">
-        <div className="story--date">
-          { moment(date).format("M/D/YYYY hh:MMa") }
-        </div>
+      <div className="story--date">
+        { moment(date).format('M/D/YYYY hh:MMa') }
+      </div>
       <a
         className="story--title base--a results--a"
         href={url}
@@ -31,7 +31,7 @@ export default function Story({ date, host = 'Placeholder Source', score, title,
         </span>
         <span className="story--source-score-divider"> | </span>
         <span className="story--score base--p">
-          <span>Score:   </span>
+          <span>Score:                                                                                                                                                                                                                                                                                 </span>
           { score }
         </span>
       </div>
